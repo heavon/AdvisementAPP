@@ -3,7 +3,7 @@ package com.example.heavon.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class FindPasswordActivity extends AppCompatActivity {
+public class FindPasswordActivity extends BasicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

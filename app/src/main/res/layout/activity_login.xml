@@ -69,7 +69,7 @@
                     android:id="@+id/forgetpwd_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#0000000"
+                    android:background="#00000000"
                     android:text="@string/link_forgetpwd_short"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
@@ -78,7 +78,7 @@
                     android:id="@+id/register_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#0000000"
+                    android:background="#00000000"
                     android:text="@string/link_register_short"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />

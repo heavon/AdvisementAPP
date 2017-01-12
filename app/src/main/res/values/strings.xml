@@ -22,4 +22,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="link_register_short">注册</string>
     <string name="link_forgetpwd_short">忘记密码</string>
+    <string name="button_register">注册</string>
+    <string name="prompt_verify">验证码</string>
+    <string name="link_verify_short">验证</string>
+    <string name="prompt_search">搜索</string>
+    <string name="link_search_short">搜索</string>
+    <string name="search_button">搜索</string>
+    <string name="register_title">注册账号</string>
+    <string name="find_password_title">找回密码</string>
+    <string name="prompt_password_confirm">确认密码</string>
+    <string name="button_find_password">确认设置</string>
 </resources>

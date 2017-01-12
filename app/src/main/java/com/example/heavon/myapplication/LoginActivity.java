@@ -3,6 +3,7 @@ package com.example.heavon.myapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -63,6 +64,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button mRegisterButton;
+    private Button mForgetPwdButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,34 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        mRegisterButton = (Button) findViewById(R.id.register_button);
+        mForgetPwdButton = (Button) findViewById(R.id.forgetpwd_button);
+        mRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到注册页面
+                gotoRegister();
+            }
+        });
+        mForgetPwdButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到忘记密码页面
+                gotoForgetPwd();
+            }
+        });
+    }
+
+    //跳转到注册页面
+    public void gotoRegister(){
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        LoginActivity.this.startActivity(intent);
+    }
+    //跳转到忘记密码页面
+    public void gotoForgetPwd(){
+        Intent intent = new Intent(LoginActivity.this, FindPasswordActivity.class);
+        LoginActivity.this.startActivity(intent);
     }
 
     private void populateAutoComplete() {
