@@ -24,8 +24,7 @@ public class RegisterActivity extends BasicActivity implements LoaderCallbacks<C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        SMSSDK.initSDK(this, "19accee5f0490", "96545bc0dfb6f782602717bb863a9464");
-
+        initToolBar(getString(R.string.register_title));
         mButtonRegister = (Button) findViewById(R.id.bt_register);
         mButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override

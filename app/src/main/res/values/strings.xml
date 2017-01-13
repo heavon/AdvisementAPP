@@ -32,4 +32,5 @@
     <string name="find_password_title">找回密码</string>
     <string name="prompt_password_confirm">确认密码</string>
     <string name="button_find_password">确认设置</string>
+    <string name="loading">正在登录</string>
 </resources>

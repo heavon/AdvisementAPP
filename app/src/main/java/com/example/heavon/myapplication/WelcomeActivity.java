@@ -15,7 +15,7 @@ import com.example.heavon.interfaceClasses.HttpResponse;
 
 import java.util.Map;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BasicActivity {
 
     SharedPreferences mSp;
     RequestQueue mQueue;
@@ -59,24 +59,11 @@ public class WelcomeActivity extends AppCompatActivity {
                     });
 
                 }else{
+                    //跳转到登录页面
                     gotoLogin();
                 }
 
             }
         }, 2000); //2000 for release
-    }
-
-    //跳转到主页面
-    public void gotoMain(){
-        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-        WelcomeActivity.this.startActivity(intent);
-        WelcomeActivity.this.finish();
-    }
-
-    //跳转到登录页面
-    public void gotoLogin(){
-        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-        WelcomeActivity.this.startActivity(intent);
-        WelcomeActivity.this.finish();
     }
 }

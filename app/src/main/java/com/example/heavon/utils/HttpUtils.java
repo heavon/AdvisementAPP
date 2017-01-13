@@ -13,6 +13,7 @@ import com.example.heavon.interfaceClasses.HttpResponse;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -144,6 +145,14 @@ public class HttpUtils {
             protected Map<String, String> getParams() {
                 //在这里设置需要post的参数
                 return mParams;
+            }
+            @Override
+            public Map getHeaders() {
+                HashMap headers = new HashMap();
+                headers.put("Accept", "application/json");
+                headers.put("Content-Type", "application/json; charset=UTF-8");
+
+                return headers;
             }
         };
         mQuene.add(request);

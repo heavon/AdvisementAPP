@@ -3,7 +3,10 @@ package com.example.heavon.myapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -20,20 +23,29 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.heavon.dao.UserDao;
+import com.example.heavon.interfaceClasses.HttpResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -59,19 +71,31 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      */
     private UserLoginTask mAuthTask = null;
 
+    private RequestQueue mQueue;
+    private SharedPreferences mSp;
+
     // UI references.
     private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button mloginButton;
     private Button mRegisterButton;
-    private Button mForgetPwdButton;
+    private Button mFindPasswordButton;
+    private Dialog mLoginingDlg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
+        mQueue = Volley.newRequestQueue(LoginActivity.this);
+        mSp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        initUI();
+    }
+
+    //初始化UI
+    public void initUI(){
         mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
         populateAutoComplete();
 
@@ -87,8 +111,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        mloginButton = (Button) findViewById(R.id.bt_login);
+        mloginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -96,10 +120,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+//        mProgressView = findViewById(R.id.login_progress);
 
-        mRegisterButton = (Button) findViewById(R.id.register_button);
-        mForgetPwdButton = (Button) findViewById(R.id.forgetpwd_button);
+        mRegisterButton = (Button) findViewById(R.id.bt_link_register);
+        mFindPasswordButton = (Button) findViewById(R.id.bt_link_find_password);
         mRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,24 +131,31 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 gotoRegister();
             }
         });
-        mForgetPwdButton.setOnClickListener(new OnClickListener() {
+        mFindPasswordButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到忘记密码页面
-                gotoForgetPwd();
+                //跳转到找回密码页面
+                gotoFindPassword();
             }
         });
-    }
 
+        initLoginingDlg();
+    }
     //跳转到注册页面
     public void gotoRegister(){
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         LoginActivity.this.startActivity(intent);
     }
     //跳转到忘记密码页面
-    public void gotoForgetPwd(){
+    public void gotoFindPassword(){
         Intent intent = new Intent(LoginActivity.this, FindPasswordActivity.class);
         LoginActivity.this.startActivity(intent);
+    }
+    //跳转到主页面
+    public void gotoMain(){
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
     }
 
     private void populateAutoComplete() {
@@ -138,6 +169,41 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         } else if (VERSION.SDK_INT >= 8) {
             // Use AccountManager (API 8+)
             new SetupEmailAutoCompleteTask().execute(null, null);
+        }
+    }
+
+    //初始化正在登录等待窗口
+    public void initLoginingDlg(){
+        mLoginingDlg = new Dialog(this, R.style.loginingDlg);
+        mLoginingDlg.setContentView(R.layout.logining_dlg);
+        Window window = mLoginingDlg.getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        // 获取和mLoginingDlg关联的当前窗口的属性，从而设置它在屏幕中显示的位置
+
+        // 获取屏幕的高宽
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int cxScreen = dm.widthPixels;
+        int cyScreen = dm.heightPixels;
+        int height = (int) getResources().getDimension(R.dimen.loginingdlg_height);// 高42dp
+        int lrMargin = (int) getResources().getDimension(R.dimen.loginingdlg_lr_margin); // 左右边沿10dp
+        int topMargin = (int) getResources().getDimension(R.dimen.loginingdlg_top_margin); // 上沿20dp
+        params.y = (-(cyScreen - height) / 2) + topMargin; // -199
+        /* 对话框默认位置在屏幕中心,所以x,y表示此控件到"屏幕中心"的偏移量 */
+        params.width = cxScreen;
+        params.height = height;// width,height表示mLoginingDlg的实际大小
+        mLoginingDlg.setCanceledOnTouchOutside(true); // 设置点击Dialog外部任意区域关闭Dialog
+    }
+    //显示正在登录窗口
+    public void showLoginingDlg(){
+        if(mLoginingDlg != null){
+            mLoginingDlg.show();
+        }
+    }
+    //关闭正在登录窗口
+    public void closeLoginingDlg(){
+        if(mLoginingDlg != null && mLoginingDlg.isShowing()){
+            mLoginingDlg.dismiss();
         }
     }
 
@@ -192,8 +258,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String username = mUsernameView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        final String username = mUsernameView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -223,9 +289,39 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(username, password);
-            mAuthTask.execute((Void) null);
+            //正在登录
+            showLoginingDlg();
+
+            UserDao userDao = new UserDao();
+            userDao.login(username, password, mQueue, new HttpResponse<Map<String, Object>>() {
+                @Override
+                public void getHttpResponse(Map<String, Object> result) {
+                    if((Boolean)result.get("error")){
+                        //登录失败
+                        closeLoginingDlg();
+                        Toast.makeText(LoginActivity.this, (String)result.get("msg"), Toast.LENGTH_SHORT).show();
+                    }else{
+                        int uid = (int) result.get("uid");
+//                                String hashcode = result.get("hashcode").toString();
+                        Log.i("login", String.valueOf(uid)+" login!");
+                        //登录成功保存登录信息
+                        SharedPreferences.Editor editor = mSp.edit();
+                        editor.putInt("USER_ID", uid);
+                        editor.putBoolean("AUTO_ISCHECK", true);
+                        editor.putString("USER_NAME", username);
+                        editor.putString("PASSWORD", password);
+//                                editor.putString("HASHCODE", hashcode);
+                        editor.commit();
+
+                        closeLoginingDlg();
+                        //进入主界面
+                        gotoMain();
+                    }
+                }
+            });
+//            showProgress(true);
+//            mAuthTask = new UserLoginTask(username, password);
+//            mAuthTask.execute((Void) null);
         }
     }
 

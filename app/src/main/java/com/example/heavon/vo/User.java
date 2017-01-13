@@ -6,6 +6,7 @@ package com.example.heavon.vo;
 public class User {
     int uid;
     String name;
+    String username;
     String password;
     String email;
     String phone;
@@ -45,6 +46,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

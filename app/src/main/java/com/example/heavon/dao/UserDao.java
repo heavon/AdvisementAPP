@@ -26,7 +26,7 @@ public class UserDao extends BaseDao{
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
-        String loginUrl = "http://localhost/ad/Home/index.php/User/login.php";
+        String loginUrl = "http://192.168.1.110/ad/index.php/Home/User/login";
         //发送登录请求
         HttpUtils http = new HttpUtils(queue);
         http.postString(loginUrl, new Response.Listener<String>() {
