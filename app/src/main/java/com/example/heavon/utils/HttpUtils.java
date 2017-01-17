@@ -34,6 +34,26 @@ public class HttpUtils {
     }
 
     /**
+     * 获取服务器IP地址
+     * @return 服务器IP地址
+     */
+    public static String getHostIP(){
+        String hostIP = "127.0.0.1";
+
+        return hostIP;
+    }
+
+    /**
+     * 获取服务器后台地址
+     * @return 服务器后台地址
+     */
+    public static String getHost(){
+        String host = "http://192.168.1.104/ad/index.php/Home/";
+
+        return host;
+    }
+
+    /**
      * GET直接请求
      * @param url 请求链接
      * @return

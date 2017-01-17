@@ -17,6 +17,8 @@
     <string name="prompt_username">用户名</string>
     <string name="title_activity_basic">广告投放</string>
     <string name="error_invalid_username">用户名格式错误</string>
+    <string name="error_invalid_verifycode">验证码错误</string>
+    <string name="error_inconsistent_password">密码不一致</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -32,5 +34,10 @@
     <string name="find_password_title">找回密码</string>
     <string name="prompt_password_confirm">确认密码</string>
     <string name="button_find_password">确认设置</string>
-    <string name="loading">正在登录</string>
+    <string name="loading">正在加载</string>
+    <string name="loading_register">正在注册</string>
+    <string name="loading_login">正在登录</string>
+    <string name="bt_link_goto_main">先去逛逛</string>
+    <string name="loading_find_password">正在找回密码</string>
+
 </resources>
