@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 
 import com.example.heavon.fragment.MainFragment;
 import com.example.heavon.fragment.PersonFragment;
+import com.example.heavon.fragment.SearchFragment;
 import com.example.heavon.fragment.TypeFragment;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, PersonFragment.OnFragmentInteractionListener, TypeFragment.OnFragmentInteractionListener, SearchFragment.OnFragmentInteractionListener {
 
     private Button mIndicatorMain;
     private Button mIndicatorType;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //初始化Fragment
-    public void initFragment(){
+    public void initFragment() {
         MainFragment mainFragment = new MainFragment();
         TypeFragment typeFragment = new TypeFragment();
         PersonFragment personFragment = new PersonFragment();
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //初始化底部导航
-    public void initIndicator(){
+    public void initIndicator() {
         mIndicatorMain = (Button) findViewById(R.id.indicator_main);
         mIndicatorType = (Button) findViewById(R.id.indicator_type);
         mIndicatorPerson = (Button) findViewById(R.id.indicator_person);
@@ -96,4 +98,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //实现Fragment事件监听
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
 }

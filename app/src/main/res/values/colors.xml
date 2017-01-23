@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#333333</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorText">#7F858A</color>
+    <color name="colorTextHint">#A1A6A9</color>
+    <color name="colorTextBackground">#FFFFFF</color>
+    <color name="colorButton">#FFFFFF</color>
+    <color name="colorBorder">#D6D9DA</color>
+    <color name="colorButtonBorder">#29A1F7</color>
+    <color name="colorButtonBackground">#29A1F7</color>
+    <color name="colorButtonBackgroundPressed">#23ACF9</color>
+
+    <!--自定义颜色-->
+    <color name="colorVerify">#29A1F7</color>
+    <color name="colorVerifyBackground">#00000000</color>
+    <color name="colorVerifyPressed">#23ACF9</color>
+    <color name="colorVerifyBackgroundPressed">#00000000</color>
+    <!--普通颜色-->
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

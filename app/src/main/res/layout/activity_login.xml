@@ -8,6 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     tools:context="com.example.heavon.myapplication.LoginActivity">
 
     <!-- Login progress -->
@@ -22,7 +24,10 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="60dp">
 
         <LinearLayout
             android:id="@+id/phone_login_form"
@@ -30,67 +35,78 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/logo"
+                android:layout_gravity="center_horizontal"/>
+
             <AutoCompleteTextView
                 android:id="@+id/username"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/bg_edittext"
+                style="@style/EditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/edittext_height"
                 android:hint="@string/prompt_username"
-                android:inputType="textEmailAddress"
+                android:inputType="phone"
                 android:maxLines="1"
                 android:singleLine="true" />
 
             <EditText
                 android:id="@+id/password"
+                android:layout_marginTop="@dimen/edittext_marginTop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
+                android:layout_height="@dimen/edittext_height"
+                style="@style/EditText"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
+                android:hint="@string/prompt_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true" />
 
             <Button
                 android:id="@+id/bt_login"
-                style="?android:textAppearanceSmall"
+                style="@style/Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in_short"
-                android:textStyle="bold" />
+                android:layout_height="@dimen/edittext_height"
+                android:layout_marginTop="20dp"
+                android:text="@string/action_sign_in_short" />
 
             <RelativeLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/bt_link_find_password"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
+                    android:layout_height="@dimen/edittext_height"
+                    style="@style/Link"
                     android:text="@string/link_forgetpwd_short"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
                 <Button
-                    android:id="@+id/link_goto_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/bt_link_goto_main" />
-
-                <Button
                     android:id="@+id/bt_link_register"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:text="@string/link_register_short"
+                    android:layout_height="@dimen/edittext_height"
+                    style="@style/Link"
+                    android:text="@string/link_register"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/link_goto_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Link"
+                android:layout_marginTop="60dp"
+                android:layout_gravity="center"
+                android:text="@string/bt_link_goto_main" />
 
         </LinearLayout>
     </ScrollView>
