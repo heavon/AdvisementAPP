@@ -40,6 +40,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.0.1'
     compile 'com.alibaba:fastjson:1.1.55.android'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jude:rollviewpager:1.4.6'
     compile files('libs/volley.jar')
     testCompile 'junit:junit:4.12'
 }
@@ -58,4 +59,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 dependencies {
     compile 'org.greenrobot:greendao:3.2.0'
+}
+dependencies {
+    compile 'com.android.support:support-v4:25.+'
 }

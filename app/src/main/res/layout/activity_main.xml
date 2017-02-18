@@ -4,13 +4,12 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.heavon.myapplication.MainActivity">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/search_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,6 +20,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/prompt_search"
             android:inputType="text"
+            android:selectAllOnFocus="false"
+            android:textAlignment="center"
             android:maxLines="1"
             android:singleLine="true" />
 
@@ -32,29 +33,35 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <FrameLayout
-        android:id="@+id/fragment_box"
-        android:layout_below="@+id/search_box"
+        android:id="@+id/search_box"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <fragment
-            android:id="@+id/fragment"
+            android:id="@+id/fragment_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example.heavon.fragment.MainFragment"
-            tools:layout="@layout/fragment_main">
+            android:name="com.example.heavon.fragment.SearchFragment"
+            tools:layout="@layout/fragment_search">
 
         </fragment>
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_box"
+        android:layout_below="@+id/search_box"
+        android:layout_above="@+id/indicator_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/indicator_box"
-        android:layout_alignBottom="@id/fragment_box"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
@@ -64,7 +71,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="好友" />
+            android:text="@string/indicator_main" />
 
         <Button
             android:id="@+id/indicator_type"
@@ -72,7 +79,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="设置" />
+            android:text="@string/indicator_type" />
 
         <Button
             android:id="@+id/indicator_person"
@@ -80,6 +87,6 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="个人中心" />
+            android:text="@string/indicator_person" />
     </LinearLayout>
 </RelativeLayout>

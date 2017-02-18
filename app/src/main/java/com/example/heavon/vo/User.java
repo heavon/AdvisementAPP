@@ -4,14 +4,14 @@ package com.example.heavon.vo;
  * Created by Yadong on 16/3/5.
  */
 public class User {
-    int uid;
-    String name;
-    String username;
-    String password;
-    String email;
-    String phone;
-    String introduction;
-    String avatar;
+    private int uid;
+    private String name;
+    private String username;
+    private String password;
+    private String email;
+    private String phone;
+    private String introduction;
+    private String avatar;
 
     public User(){
 

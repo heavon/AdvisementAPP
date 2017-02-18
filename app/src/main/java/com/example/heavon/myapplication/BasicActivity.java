@@ -78,4 +78,9 @@ public class BasicActivity extends AppCompatActivity {
         this.finish();
     }
 
+    //跳转到登录页面
+    public void enterSearch(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        this.startActivity(intent);
+    }
 }

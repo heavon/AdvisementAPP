@@ -1,14 +1,27 @@
 package com.example.heavon.fragment;
 
-import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
+import com.example.heavon.adapter.RollLoopAdapter;
 import com.example.heavon.myapplication.R;
+import com.example.heavon.views.TypeShowContentView;
+import com.jude.rollviewpager.OnItemClickListener;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +31,7 @@ import com.example.heavon.myapplication.R;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +41,11 @@ public class MainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //UI reference.
+    private RollPagerView mRollViewPager;
     private OnFragmentInteractionListener mListener;
+//    private ScrollView mShowsScrollView;
+//    private LinearLayout mShowsView;
 
     public MainFragment() {
         // Required empty public constructor
@@ -65,10 +82,50 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        mRollViewPager = (RollPagerView) view.findViewById(R.id.roll_view_pager);
+        initRecommand();
+        
+//        mShowsScrollView = (ScrollView) view.findViewById(R.id.lv_shows);
 
-        return inflater.inflate(R.layout.fragment_main, container, false);
+//        mShowsView = (LinearLayout) view.findViewById(R.id.ll_shows);
+        FragmentManager fragmentManager = getFragmentManager();
+
+//        TypeShowFragment typeShowFragment = new TypeShowFragment();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.ll_shows, TypeShowFragment.newInstance("电视剧", 1));
+        fragmentTransaction.add(R.id.ll_shows, TypeShowFragment.newInstance("综艺", 1));
+        fragmentTransaction.commit();
+
+        return view;
     }
-
+    
+    //初始化推荐轮播图
+    public void initRecommand(){
+        //设置播放时间间隔
+        mRollViewPager.setPlayDelay(1000);
+        //设置透明度
+        mRollViewPager.setAnimationDurtion(500);
+        //设置适配器
+        mRollViewPager.setAdapter(new RollLoopAdapter(mRollViewPager));
+        //设置点击事件
+        mRollViewPager.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(getContext(),"Item "+position+" clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+        //设置指示器（顺序依次）
+        //自定义指示器图片
+        //设置圆点指示器颜色
+        //设置文字指示器
+        //隐藏指示器
+        //mRollViewPager.setHintView(new IconHintView(this, R.drawable.point_focus, R.drawable.point_normal));
+        mRollViewPager.setHintView(new ColorPointHintView(getContext(), Color.YELLOW,Color.WHITE));
+        //mRollViewPager.setHintView(new TextHintView(this));
+        //mRollViewPager.setHintView(null);
+    }
+    
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -92,6 +149,7 @@ public class MainFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

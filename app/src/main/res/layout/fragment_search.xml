@@ -5,9 +5,32 @@
     tools:context="com.example.heavon.fragment.SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
+        android:id="@+id/search_box"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_search"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <!--<Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_button"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />-->
+
+    </RelativeLayout>
 
 </FrameLayout>

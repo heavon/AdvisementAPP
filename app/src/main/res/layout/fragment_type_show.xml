@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.heavon.fragment.TypeShowFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:id="@+id/show_title_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/type_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            style="@style/TextTitle"
+            android:text="电视剧"/>
+        <Button
+            android:id="@+id/bt_type_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            style="@style/Link.More"
+            android:text="@string/link_type_more" />
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/show_list_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/show_list"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/show_none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/prompt_show_none"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+            <!--<com.example.heavon.views.TypeShowContentView-->
+                <!--android:id="@+id/show_content"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

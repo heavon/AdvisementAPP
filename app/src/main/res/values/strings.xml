@@ -42,5 +42,10 @@
     <string name="bt_link_goto_main">先去逛逛</string>
     <string name="loading_find_password">正在找回密码</string>
     <string name="prompt_password_new">设置新密码</string>
+    <string name="prompt_show_none">暂无节目</string>
+    <string name="indicator_main">首页</string>
+    <string name="indicator_type">分类</string>
+    <string name="indicator_person">我的</string>
+    <string name="link_type_more"><![CDATA[查看更多 >]]></string>
 
 </resources>

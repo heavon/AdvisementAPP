@@ -5,5 +5,5 @@ package com.example.heavon.interfaceClasses;
  */
 public interface HttpResponse<T> {
 //    public void getHttpResponse(String result);
-    public void getHttpResponse(T result);
+    void getHttpResponse(T result);
 }
