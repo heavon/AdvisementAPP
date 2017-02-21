@@ -91,7 +91,6 @@ public class MainFragment extends Fragment{
 //        mShowsView = (LinearLayout) view.findViewById(R.id.ll_shows);
         FragmentManager fragmentManager = getFragmentManager();
 
-//        TypeShowFragment typeShowFragment = new TypeShowFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.ll_shows, TypeShowFragment.newInstance("电视剧", 1));
         fragmentTransaction.add(R.id.ll_shows, TypeShowFragment.newInstance("综艺", 1));

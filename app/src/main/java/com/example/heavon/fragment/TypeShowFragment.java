@@ -1,6 +1,7 @@
 package com.example.heavon.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.heavon.dao.ShowDao;
 import com.example.heavon.interfaceClasses.HttpResponse;
 import com.example.heavon.myapplication.LoginActivity;
+import com.example.heavon.myapplication.MoreShowActivity;
 import com.example.heavon.myapplication.R;
 import com.example.heavon.views.TypeShowContentView;
 import com.example.heavon.vo.Show;
@@ -100,12 +102,15 @@ public class TypeShowFragment extends Fragment {
         }
 
         mTypeMoreButton = (Button) view.findViewById(R.id.bt_type_more);
-        mTypeMoreButton.setTag(mType);
         mTypeMoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /**----------wait to modify-----------**/
-                Toast.makeText(getContext(), "type more"+view.getTag(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), MoreShowActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("type", mType);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 /**----------wait to modify-----------**/
             }
         });

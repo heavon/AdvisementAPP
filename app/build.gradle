@@ -41,6 +41,8 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.55.android'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jude:rollviewpager:1.4.6'
+    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.2'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
     compile files('libs/volley.jar')
     testCompile 'junit:junit:4.12'
 }

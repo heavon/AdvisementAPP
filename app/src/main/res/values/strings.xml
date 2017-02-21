@@ -47,5 +47,6 @@
     <string name="indicator_type">分类</string>
     <string name="indicator_person">我的</string>
     <string name="link_type_more"><![CDATA[查看更多 >]]></string>
+    <string name="more_show_title">分类</string>
 
 </resources>

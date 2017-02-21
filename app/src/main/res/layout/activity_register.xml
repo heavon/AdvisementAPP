@@ -4,15 +4,15 @@
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     tools:context="com.example.heavon.myapplication.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_basic"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        style="@style/ToolBar"
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true">
+        style="@style/ToolBar">
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
